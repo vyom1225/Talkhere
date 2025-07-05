@@ -73,3 +73,6 @@ jspm_packages/
 
 # dotenv-vault
 .env.vault
+
+# file-uploads
+upload/

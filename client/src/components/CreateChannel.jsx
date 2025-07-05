@@ -20,6 +20,7 @@ function CreateChannel() {
     const [selectedContacts, setSelectedContacts] = useState([]);
     const [channelName, setChannelName] = useState("");
 
+   
 
     useEffect(()=>{
         const getData = async ()=>{
@@ -46,9 +47,11 @@ function CreateChannel() {
                     setNewChannelModal(false);
                     addChannel(response.data.channel);
                 }
+            }else{
+                toast.error("Channel Name or Channel Members are invalid");
             }
         }catch(error){
-            toast.error("There was an error creating the server , Please Try Again Later")
+            toast.error("There was an error creating the channel , Please Try Again Later")
         }
    }
 
@@ -81,15 +84,16 @@ function CreateChannel() {
                 </div>
                 <div className="w-full">
                     <MultipleSelector className = "rounded-lg bg-[#2c2e3b] border-none py-2 text-white"
-                    defaultOptions = {allContacts}
-                    placeholder = "Search Contacts"
-                    value = {selectedContacts}
-                    onChange = {setSelectedContacts}
-                    emptyIndicator = {
-                        <p className="text-center text-lg leading-10 text-gray-600">
-                            No Result Found
-                        </p>
-                    }
+                        defaultOptions = {allContacts}
+                        placeholder = "Search Contacts"
+                        value = {selectedContacts}
+                        onChange = {setSelectedContacts}
+                        emptyIndicator = {
+                            <p className="text-center text-lg leading-10 text-white/90 bg-[#2c2e3b] ">
+                                No Result Found
+                            </p>
+                        }
+                        hidePlaceholderWhenSelected   
                     />
                 </div>
                 <div className="w-full">

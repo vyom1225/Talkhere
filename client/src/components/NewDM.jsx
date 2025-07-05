@@ -72,45 +72,47 @@ function NewDM() {
                     <Input placeholder="Search a Contact" className="rounded-lg p-6 mt-5 border-none bg-[#2c2e3b]"
                     onChange = {(e) => searchContact(e.target.value)}/>
                 </div>
-                {searchedContacts.length > 0 && (
-                <ScrollArea className="h-[250px] w-full">
-                    <div className = "flex flex-col gap-5 ml-5">
-                        {searchedContacts.map( (contact) => (
-                            <div key = {contact._id}
-                                className="flex gap-3 items-center cursor-pointer"
-                                onClick={() => selectNewContact(contact)}
-                            >
-                                <div className="h-12 w-12 relative rounded-full overflow-hidden ">
-                                    <Avatar>
-                                        {contact.imageURL ? (<AvatarImage 
-                                                src={`${HOST}/${contact.imageURL}`} 
-                                                alt="profile picture"  
-                                                className = "object-cover w-full h-full bg-black "/>)
-                                            : (<div className={` ${getColor(contact.colorTheme)} 
-                                                    uppercase h-12 w-12 text-2xl font-bold
-                                                    border-[3px] flex items-center justify-center rounded-full`}> 
-                                                {contact.firstName ? contact.firstName.split("").shift() 
-                                                                    : contact.email.split("").shift()}
-                                            </div>)}    
-                                    </Avatar>
+                <div className="overflow-y-scroll w-full">
+                    {searchedContacts.length > 0 && (
+                    <ScrollArea className="h-[250px] w-full">
+                        <div className = "flex flex-col gap-5 ml-5">
+                            {searchedContacts.map( (contact) => (
+                                <div key = {contact._id}
+                                    className="flex gap-3 items-center cursor-pointer"
+                                    onClick={() => selectNewContact(contact)}
+                                >
+                                    <div className="h-12 w-12 relative rounded-full overflow-hidden ">
+                                        <Avatar>
+                                            {contact.imageURL ? (<AvatarImage 
+                                                    src={`${HOST}/${contact.imageURL}`} 
+                                                    alt="profile picture"  
+                                                    className = "object-cover w-full h-full bg-black "/>)
+                                                : (<div className={` ${getColor(contact.colorTheme)} 
+                                                        uppercase h-12 w-12 text-2xl font-bold
+                                                        border-[3px] flex items-center justify-center rounded-full`}> 
+                                                    {contact.firstName ? contact.firstName.split("").shift() 
+                                                                        : contact.email.split("").shift()}
+                                                </div>)}    
+                                        </Avatar>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <span>
+                                        {
+                                            contact.firstName && contact.lastName 
+                                            ? `${contact.firstName} ${contact.lastName}`
+                                            : `${contact.email}`
+                                        }
+                                        </span>
+                                        <span className="text-xs">
+                                            {contact.email}
+                                        </span>
+                                    </div>
                                 </div>
-                                <div className="flex flex-col">
-                                    <span>
-                                    {
-                                        contact.firstName && contact.lastName 
-                                        ? `${contact.firstName} ${contact.lastName}`
-                                        : `${contact.email}`
-                                    }
-                                    </span>
-                                    <span className="text-xs">
-                                         {contact.email}
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </ScrollArea>
-                )}
+                            ))}
+                        </div>
+                    </ScrollArea>
+                    )}
+                </div>
                 {
                     searchedContacts.length <= 0 && (<div className = "mt-5 flex-1 md:flex flex-col justify-center items-start  duration-1000 transition-all ">
                         <div className="text-opacity-80 flex flex-col gap-5 items-center 

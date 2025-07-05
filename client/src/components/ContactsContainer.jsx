@@ -38,7 +38,7 @@ function ContactsContainer() {
 
         getContacts();
         getChannels();
-    },[selectedChatMessages])
+    },[])
 
 
   return (

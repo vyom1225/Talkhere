@@ -20,7 +20,7 @@ const CommandEmpty = forwardRef(({ className, ...props }, forwardedRef) => {
   return (
     <div
       ref={forwardedRef}
-      className={cn("py-6 text-center text-sm", className)}
+      className={cn("border-none text-center text-sm", className)}
       cmdk-empty=""
       role="presentation"
       {...props}
@@ -252,7 +252,7 @@ const MultipleSelector = React.forwardRef(
       >
         <div
           className={cn(
-            "min-h-10 rounded-md border border-input text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
+            "rounded-md border border-input text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
             {
               "px-3 py-2": selected.length !== 0,
               "cursor-text": !disabled && selected.length !== 0,
@@ -353,7 +353,7 @@ const MultipleSelector = React.forwardRef(
         <div className="relative">
           {open && (
             <CommandList
-              className="absolute top-1 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in"
+              className=" mt-2 overlflow-y-auto max-h-[172px] absolute top-1 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in"
               onMouseLeave={() => {
                 mouseOn.current = false;
               }}
@@ -377,7 +377,7 @@ const MultipleSelector = React.forwardRef(
                     <CommandGroup
                       key={key}
                       heading={key}
-                      className="h-full overflow-auto"
+                      className="overflow-auto bg-[#2c2e3b] text-gray-300"
                     >
                       <>
                         {dropdowns.map((option) => {
@@ -401,7 +401,7 @@ const MultipleSelector = React.forwardRef(
                                 onChange?.(newOptions);
                               }}
                               className={cn(
-                                "cursor-pointer",
+                                "cursor-pointer ",
                                 option.disable &&
                                   "cursor-default text-muted-foreground"
                               )}
